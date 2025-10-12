@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Portfolio — Ilias Attouahri</title>
+  <meta name="description" content="Ilias Attouahri — Développeur Web Full‑Stack en devenir. Projets, compétences et contact : iliasattouahri@gmail.com" />
+  <meta name="theme-color" content="#00b4d8" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="Ilias Attouahri — Portfolio" />
+  <meta property="og:description" content="Développeur Web — Front & Back. Projets, certifications, contact." />
+  <meta property="og:image" content="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80" />
+  <meta property="og:type" content="website" />
+
+  <!-- Performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+
+  <style>
+    :root{
+      --bg:#f5f5f5;
+      --card:#fff;
+      --accent:#00b4d8;
+      --accent-2:#0077b6;
+      --muted:#666;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:"Poppins",sans-serif;background:var(--bg);color:#222;scroll-behavior:smooth}
+    a{color:inherit;text-decoration:none}
+    .skip-link{position:absolute;left:-999px;top:auto;width:1px;height:1px;overflow:hidden}
+    .skip-link:focus{left:10px;top:10px;width:auto;height:auto;padding:8px 12px;background:#000;color:#fff;border-radius:4px;z-index:2000}
+
+    nav{position:fixed;inset:0 0 auto 0;display:flex;justify-content:center;padding:12px;background:linear-gradient(180deg,rgba(0,0,0,0.65),rgba(0,0,0,0.25));backdrop-filter: blur(6px);z-index:1000;transition:background .25s}
+    nav.scrolled{background:linear-gradient(180deg,rgba(0,0,0,0.9),rgba(0,0,0,0.6))}
+    .nav-inner{width:100%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 16px}
+    .brand{display:flex;align-items:center;gap:12px;color:#fff;font-weight:700}
+    .logo{width:42px;height:42px;border-radius:8px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:flex;align-items:center;justify-content:center;color:#022}
+    .nav-links{display:flex;gap:16px;align-items:center}
+    .nav-links a{color:#fff;padding:8px 14px;border-radius:20px;font-weight:600;opacity:.95}
+    .nav-links a:hover{background:var(--accent);transform:translateY(-3px)}
+    .actions{display:flex;gap:8px;align-items:center}
+    .btn{background:var(--accent);color:#fff;padding:8px 14px;border-radius:999px;font-weight:700;display:inline-flex;gap:8px;align-items:center}
+    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.12)}
+    .theme-toggle{background:transparent;border:none;color:#fff;font-size:1.05rem;cursor:pointer}
+
+    header{height:90vh;min-height:640px;display:flex;align-items:center;justify-content:center;position:relative;padding-top:80px;text-align:center;overflow:hidden}
+    header .bg{position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1600&q=80');background-size:cover;background-position:center;filter:contrast(.85) saturate(.9)}
+    header::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(2,6,23,0.45),rgba(0,0,0,0.6));mix-blend-mode:multiply}
+    header .content{position:relative;z-index:2;max-width:980px;padding:32px 20px;color:#fff}
+    h1{font-size:2.6rem;letter-spacing:2px;margin:0 0 8px;text-transform:uppercase}
+    header p{margin:8px 0 20px;font-size:1.15rem;opacity:.95}
+    .hero-ctas{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
+    .hero-ctas a{display:inline-block}
+
+    .ribbon{position:absolute;right:18px;top:18px;background:var(--accent);color:#002;padding:8px 12px;border-radius:999px;font-weight:700;box-shadow:0 6px 18px rgba(0,180,216,0.18);z-index:3}
+
+    main{max-width:1100px;margin:40px auto;padding:0 18px}
+    h2{font-size:1.9rem;text-align:center;margin:18px 0 22px;color:#052;letter-spacing:.4px}
+    .card{background:var(--card);padding:18px;border-radius:14px;box-shadow:0 10px 30px rgba(20,20,30,0.06)}
+    .about{padding:36px;text-align:center}
+    .two-col{display:grid;grid-template-columns:1fr 320px;gap:24px;align-items:start}
+    @media (max-width:930px){.two-col{grid-template-columns:1fr;}.nav-links{display:none}}
+
+    .skills{display:grid;gap:12px}
+    .skill{display:flex;flex-direction:column;gap:8px}
+    .skill .label{display:flex;justify-content:space-between;font-weight:600;color:var(--muted)}
+    .bar{height:10px;background:#eef6f8;border-radius:999px;overflow:hidden}
+    .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;width:0;transition:width .8s cubic-bezier(.2,.9,.2,1)}
+
+    .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px}
+    .project-head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+    .project-links{display:flex;gap:8px}
+    .meta{color:var(--muted);font-size:.95rem;display:flex;gap:8px;align-items:center}
+
+    form{display:flex;flex-direction:column;gap:10px}
+    label.visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;border:0}
+    input,textarea{padding:12px;border-radius:8px;border:1px solid #ddd;font-size:1rem}
+    button[type="submit"]{padding:12px;border-radius:999px;background:var(--accent);border:none;color:#fff;font-weight:700;cursor:pointer}
+    #notice{margin-top:8px}
+
+    footer{margin:40px 0 80px;text-align:center;color:var(--muted)}
+    .social-links{display:flex;gap:12px;justify-content:center;margin-top:10px;font-size:1.25rem}
+
+    .card, .project, .skill {opacity:0; transform:translateY(18px); transition:opacity .6s, transform .6s}
+    .visible{opacity:1;transform:none}
+    :focus{outline:3px solid rgba(0,180,216,0.18);outline-offset:3px}
+  </style>
+</head>
+<body>
+
+  <a class="skip-link" href="#maincontent">Aller au contenu</a>
+
+  <nav aria-label="Navigation principale" id="nav">
+    <div class="nav-inner">
+      <div class="brand" aria-hidden="false">
+        <div class="logo" aria-hidden="true"><i class="fas fa-code" style="color:#022"></i></div>
+        <div>
+          <div style="font-size:.88rem;opacity:.9">Ilias</div>
+          <div style="font-size:.78rem;opacity:.8">Attouahri</div>
+        </div>
+      </div>
+
+      <div class="nav-links" role="menubar" aria-label="Liens de la page">
+        <a href="#home" role="menuitem">Accueil</a>
+        <a href="#projets" role="menuitem">Projets</a>
+        <a href="#certifications" role="menuitem">Certifs</a>
+        <a href="#skills" role="menuitem">Compétences</a>
+        <a href="#contact" role="menuitem">Contact</a>
+      </div>
+
+      <div class="actions">
+        <a class="btn" href="assets/CV_Ilias_Attouahri.pdf" download title="Télécharger mon CV"><i class="fas fa-download"></i> CV</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="Basculer thème"><i class="fas fa-moon"></i></button>
+      </div>
+    </div>
+  </nav>
+
+  <header id="home" aria-labelledby="hero-title">
+    <div class="bg" aria-hidden="true"></div>
+    <div class="ribbon">Pro — Portfolio</div>
+
+    <div class="content">
+      <h1 id="hero-title">Ilias Attouahri</h1>
+      <p>Développeur Web — Front‑End & Back‑End. Passionné par l'intelligence artificielle et la création de produits utiles.</p>
+      <div class="hero-ctas">
+        <a class="btn" href="#projets">Voir mes projets</a>
+        <a class="btn ghost" href="#contact">Me contacter</a>
+        <a class="btn" href="mailto:iliasattouahri@gmail.com" title="Envoyer un e-mail"><i class="fas fa-envelope"></i> iliasattouahri@gmail.com</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="maincontent" tabindex="-1">
+
+    <section class="about card visible" id="about" role="region" aria-labelledby="about-title">
+      <h2 id="about-title">À propos</h2>
+      <p>Bonjour ! Je suis Ilias, étudiant à l'ISGI Casablanca. Je développe des interfaces accessibles et des APIs robustes. Mon objectif : devenir Full‑Stack Developer et travailler sur des projets IA & Web.</p>
+    </section>
+
+    <section id="projets" class="card" role="region" aria-labelledby="projets-title">
+      <h2 id="projets-title">Projets récents</h2>
+      <div class="cards" id="projectsList">
+        <article class="project card">
+          <div class="project-head">
+            <strong>Site de Billetterie (Demo)</strong>
+            <div class="project-links">
+              <a href="https://github.com/iliasattouahri-star/ticketing-demo" target="_blank" rel="noopener noreferrer" title="Code"><i class="fab fa-github"></i></a>
+              <a href="#" target="_blank" rel="noopener noreferrer" title="Live"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+          <p class="meta"><i class="fas fa-tools"></i> HTML / CSS / JS — réservation frontend simulée.</p>
+        </article>
+
+        <article class="project card">
+          <div class="project-head">
+            <strong>Landing Page Produit</strong>
+            <div class="project-links">
+              <a href="https://github.com/iliasattouahri-star/product-landing" target="_blank" rel="noopener noreferrer" title="Code"><i class="fab fa-github"></i></a>
+              <a href="#" target="_blank" rel="noopener noreferrer" title="Live"><i class="fas fa-globe"></i></a>
+            </div>
+          </div>
+          <p class="meta"><i class="fas fa-mobile"></i> Responsive & SEO friendly.</p>
+        </article>
+
+        <article class="project card">
+          <div class="project-head">
+            <strong>Formulaire Accessible</strong>
+            <div class="project-links">
+              <a href="https://github.com/iliasattouahri-star/accessible-form" target="_blank" rel="noopener noreferrer" title="Code"><i class="fab fa-github"></i></a>
+            </div>
+          </div>
+          <p class="meta"><i class="fas fa-check-circle"></i> Labels, validations, ARIA, retours accessibles.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="certifications" class="card" role="region" aria-labelledby="certifs-title">
+      <h2 id="certifs-title">Certifications</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Intégrer l’IA générative</h3>
+          <p class="meta"><i class="fab fa-linkedin"></i> LinkedIn — oct. 2025</p>
+        </div>
+        <div class="card">
+          <h3>AI for Operational Excellence</h3>
+          <p class="meta"><i class="fas fa-graduation-cap"></i> Udemy — sept. 2025</p>
+        </div>
+        <div class="card">
+          <h3>L'essentiel de Python</h3>
+          <p class="meta"><i class="fab fa-linkedin"></i> LinkedIn</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="skills" class="card" role="region" aria-labelledby="skills-title">
+      <h2 id="skills-title">Compétences</h2>
+      <div class="two-col">
+        <div>
+          <div class="skills">
+            <div class="skill">
+              <div class="label"><span>HTML / CSS</span><span>85%</span></div>
+              <div class="bar"><i data-width="85%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label"><span>JavaScript</span><span>75%</span></div>
+              <div class="bar"><i data-width="75%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label"><span>Node.js / Express</span><span>70%</span></div>
+              <div class="bar"><i data-width="70%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label"><span>SQL / Bases de données</span><span>65%</span></div>
+              <div class="bar"><i data-width="65%"></i></div>
+            </div>
+            <div class="skill">
+              <div class="label"><span>Python / IA basique</span><span>60%</span></div>
+              <div class="bar"><i data-width="60%"></i></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="card" style="background:linear-gradient(180deg,#fff,#f7fbfd);">
+          <h3 style="margin:0 0 8px">À la recherche de :</h3>
+          <p style="margin:0 0 12px">Stages / Missions freelance / Collaboration sur projets IA & Web.</p>
+          <p style="margin:0;font-weight:700">Email : <a id="emailLink" href="mailto:iliasattouahri@gmail.com">iliasattouahri@gmail.com</a></p>
+          <button id="copyBtn" class="btn" style="margin-top:12px" aria-label="Copier l'adresse e-mail"><i class="fas fa-copy"></i> Copier e-mail</button>
+        </aside>
+      </div>
+    </section>
+
+    <section id="contact" class="card" role="region" aria-labelledby="contact-title">
+      <h2 id="contact-title">Contact</h2>
+
+      <div style="display:grid;grid-template-columns:1fr 360px;gap:20px">
+        <div>
+          <form id="contactForm" novalidate>
+            <label class="visually-hidden" for="name">Votre nom</label>
+            <input id="name" name="name" placeholder="Votre nom" required>
+
+            <label class="visually-hidden" for="email">Votre email</label>
+            <input id="email" name="email" type="email" placeholder="Votre email" required>
+
+            <label class="visually-hidden" for="message">Votre message</label>
+            <textarea id="message" name="message" rows="6" placeholder="Votre message" required></textarea>
+
+            <button type="submit">Envoyer</button>
+          </form>
+          <div id="notice" aria-live="polite" role="status"></div>
+        </div>
+
+        <aside class="card">
+          <h3>Infos</h3>
+          <p class="meta"><i class="fab fa-linkedin"></i> <a href="https://www.linkedin.com/in/ilias-attouahri-b58562336/" target="_blank" rel="noopener noreferrer">LinkedIn</a></p>
+          <p class="meta"><i class="fab fa-instagram"></i> <a href="https://www.instagram.com/ilias_attouahri/" target="_blank" rel="noopener noreferrer">Instagram</a></p>
+          <p class="meta"><i class="fas fa-map-marker-alt"></i> Casablanca, Maroc</p>
+          <p class="meta"><i class="fas fa-envelope"></i> <a href="mailto:iliasattouahri@gmail.com">iliasattouahri@gmail.com</a></p>
+        </aside>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2025 Ilias Attouahri — Merci à <strong>Mr. Hamza Khayra</strong> pour son accompagnement.</p>
+    <div class="social-links">
+      <a href="https://www.linkedin.com/in/ilias-attouahri-b58562336/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.instagram.com/ilias_attouahri/" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // Configuration: si tu as un endpoint Formspree ou serverless, mets-le ici.
+    // Laisse vide pour fallback mailto.
+    const FORMSPREE_URL = ''; // ex: 'https://formspree.io/f/your-id'
+    const EMAIL = 'iliasattouahri@gmail.com';
+
+    // Theme toggle (persisted)
+    const themeToggle = document.getElementById('themeToggle');
+    const savedTheme = localStorage.getItem('theme');
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        document.documentElement.style.setProperty('--card','#0b0f14');
+        document.documentElement.style.setProperty('--bg','#071225');
+      } else {
+        document.documentElement.style.setProperty('--card','#fff');
+        document.documentElement.style.setProperty('--bg','#f5f5f5');
+      }
+    }
+    applyTheme(savedTheme || (window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light'));
+    themeToggle.addEventListener('click', () => {
+      const current = localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+      const next = current === 'dark' ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+
+    // Navbar scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Reveal animations for cards & skills
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          // animate progress bars
+          e.target.querySelectorAll('.bar > i').forEach(i => {
+            const w = i.getAttribute('data-width');
+            if (w) i.style.width = w;
+          });
+        }
+      });
+    }, {threshold: .12});
+    document.querySelectorAll('.card, .skill, .project').forEach(n => io.observe(n));
+
+    // Copy email helpers
+    const copyBtn = document.getElementById('copyBtn');
+    const emailLink = document.getElementById('emailLink');
+    function copyEmail() {
+      navigator.clipboard?.writeText(EMAIL).then(() => {
+        showNotice('Email copié dans le presse-papiers ✅');
+      }).catch(() => {
+        prompt('Copiez cet email', EMAIL);
+      });
+    }
+    copyBtn?.addEventListener('click', copyEmail);
+    emailLink && (emailLink.textContent = EMAIL);
+
+    // Simple HTML escaping
+    function escapeHtml(str) {
+      return (str || '').replace(/[&<>"']/g, (m) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[m]);
+    }
+
+    // Notice helper (aria-live)
+    function showNotice(msg, type = 'info') {
+      const notice = document.getElementById('notice');
+      let bg = '#ecffef', border = '#c8f1d0';
+      if (type === 'error') { bg = '#fff6e0'; border = '#f0dca6'; }
+      notice.innerHTML = '<div style="padding:10px;border-radius:8px;background:' + bg + ';border:1px solid ' + border + ';">' + escapeHtml(msg) + '</div>';
+      notice.scrollIntoView({behavior:'smooth',block:'center'});
+    }
+
+    // Contact form handler: POST to Formspree if configured, otherwise open mailto:
+    const form = document.getElementById('contactForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+      if (!name || !email || !message) {
+        showNotice('Remplissez tous les champs', 'error');
+        return;
+      }
+
+      if (FORMSPREE_URL) {
+        try {
+          const res = await fetch(FORMSPREE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify({ name, email, message })
+          });
+          if (res.ok) {
+            showNotice('Merci ' + name + ' — message envoyé ✅');
+            form.reset();
+          } else {
+            showNotice('Erreur lors de l\'envoi. Réessaye plus tard.', 'error');
+          }
+        } catch (err) {
+          showNotice('Impossible de contacter le serveur.', 'error');
+        }
+      } else {
+        // Fallback: open mail client
+        const subject = encodeURIComponent('Contact via portfolio — ' + name);
+        const body = encodeURIComponent('Nom: ' + name + '\nEmail: ' + email + '\n\nMessage:\n' + message);
+        window.location.href = 'mailto:' + EMAIL + '?subject=' + subject + '&body=' + body;
+      }
+    });
+
+    // Accessibility: focus target after clicking same-page links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', (ev)=>{
+        const href = a.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          const target = document.querySelector(href);
+          if (target) {
+            // small timeout to allow scroll
+            setTimeout(() => {
+              target.setAttribute('tabindex', '-1');
+              target.focus({preventScroll: true});
+            }, 300);
+          }
+        }
+      });
+    });
+
+    // Initialize visible items already in view
+    document.querySelectorAll('.card, .project, .skill').forEach(n => {
+      const rect = n.getBoundingClientRect();
+      if (rect.top < window.innerHeight) n.classList.add('visible');
+    });
+  </script>
+
+</body>
+</html>
